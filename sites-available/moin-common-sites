@@ -1,0 +1,19 @@
+#### BEGIN moin-common-sites
+Include sites-available/common-sites
+
+Alias /moin_static/applets/FCKeditor/ "/usr/share/fckeditor/"
+Alias /moin_static/ "/usr/share/moin/htdocs/"
+
+WSGIScriptAlias /   /usr/share/moin/server/moin.wsgi
+
+# use the daemons we defined above to process requests!
+WSGIProcessGroup moin
+
+<Directory "/usr/share/moin">
+    Options All
+    AllowOverride All
+    Require all granted
+    Allow from all
+</Directory>
+
+#### END moin-common-sites
