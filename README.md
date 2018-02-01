@@ -113,5 +113,5 @@ Additional software copyrights as noted.
 # See Also
 
  - [Github page](https://github.com/jgoerzen/docker-apache-moin)
- - [Docker hub page: jgoerzen/moin](https://hub.docker.com/r/jgoerzen/moin]
+ - [Docker hub page: jgoerzen/moin](https://hub.docker.com/r/jgoerzen/moin)
 
