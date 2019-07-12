@@ -19,6 +19,7 @@ COPY sites-available/ /etc/apache2/sites-available/
 
 RUN a2enmod wsgi && \
     a2enconf docker-wsgi && \
+    sed -i "/# Security -/i    url_prefix_static = '/moin_static'" /etc/moin/farmconfig.py && \
     apache2ctl configtest
 
 CMD ["/usr/local/bin/boot-debian-base"]
