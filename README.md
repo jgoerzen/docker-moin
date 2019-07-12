@@ -57,7 +57,10 @@ Finally, make sure to end your Dockerfile with `CMD ["/usr/local/bin/boot-debian
 
 I recommend you to run your containers with:
 
-`--stop-signal=SIGPWR -t -d --net=whatever`
+    docker run -td --stop-signal=SIGRTMIN+3 \
+      --tmpfs /run:size=100M --tmpfs /run/lock:size=100M \
+      -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+      --name=name -t -d --net=whatever
 
 # Recommended Volumes
 
@@ -81,7 +84,7 @@ the host machine.
 # Copyright
 
 Docker scripts, etc. are
-Copyright (c) 2018 John Goerzen
+Copyright (c) 2018-2019 John Goerzen
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

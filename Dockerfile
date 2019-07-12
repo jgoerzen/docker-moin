@@ -1,4 +1,4 @@
-FROM jgoerzen/proxied-app-apache:stretch
+FROM jgoerzen/proxied-app-apache:buster
 
 # fckeditor is no longer in Debian but required for proper operation.
 
