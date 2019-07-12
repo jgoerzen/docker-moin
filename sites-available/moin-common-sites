@@ -15,5 +15,11 @@ WSGIProcessGroup moin
     Require all granted
     Allow from all
 </Directory>
+<Directory "/usr/local/fckeditor">
+    Options All
+    AllowOverride All
+    Require all granted
+    Allow from all
+</Directory>
 
 #### END moin-common-sites
