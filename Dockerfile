@@ -21,7 +21,7 @@ RUN cd /tmp && \
     chmod -R go-w /usr/local/fckeditor && \
     chown -R root:root /usr/local/fckeditor && \
     cd / && \
-    rm -r /tmp/moin.tar.gz /tmp/moin && \
+    rm -r /tmp/moin.tar.gz /tmp/moin 
 
 COPY conf-available/ /etc/apache2/conf-available/
 COPY sites-available/ /etc/apache2/sites-available/
