@@ -1,7 +1,7 @@
 #### BEGIN moin-common-sites
 Include sites-available/common-sites
 
-Alias /moin_static/applets/FCKeditor/ "/usr/share/fckeditor/"
+Alias /moin_static/applets/FCKeditor/ "/usr/local/fckeditor/"
 Alias /moin_static/ "/usr/share/moin/htdocs/"
 
 WSGIScriptAlias /   /usr/share/moin/server/moin.wsgi

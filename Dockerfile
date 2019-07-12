@@ -1,16 +1,24 @@
 FROM jgoerzen/proxied-app-apache:buster
 
-# fckeditor is no longer in Debian but required for proper operation.
+# fckeditor is no longer in Debian but required for proper operation.  Extract
+# it from upstream.
 
 RUN mv /usr/sbin/policy-rc.d.disabled /usr/sbin/policy-rc.d && \
     apt-get update && \
     apt-get -y -u dist-upgrade && \
     apt-get -y --no-install-recommends install python-moinmoin wamerican \
             antiword catdoc poppler-utils python-xapian  libapache2-mod-wsgi python-tz python-flup python-recaptcha && \
-    curl -s -o fckeditor_2.6.6-3_all.deb 'http://http.us.debian.org/debian/pool/main/f/fckeditor/fckeditor_2.6.6-3_all.deb' && \
-    echo 6b8f516266d2a6be8b452ccae85416cf6c88f342b691b93853291b08a592f280  fckeditor_2.6.6-3_all.deb | sha256sum -c && \
-    dpkg -i fckeditor_2.6.6-3_all.deb && \
-    rm fckeditor_2.6.6-3_all.deb && \
+    curl -s -o /tmp/moin.tar.gz http://static.moinmo.in/files/moin-1.9.10.tar.gz && \
+    echo 4a264418e886082abd457c26991f4a8f4847cd1a2ffc11e10d66231da8a5053c  moin.tar.gz | sha256sum -c && \ 
+    cd /tmp && \
+    mkdir moin && \
+    cd /tmp/moin && \
+    tar -zxf /tmp/moin.tar.gz && \
+    cp -r /tmp/moin/moin-*/MoinMoin/web/static/htdocs/applets/FCKeditor /usr/local/fckeditor && \
+    chmod -R go-w /usr/local/fckeditor && \
+    chown -R root:root /usr/local/fckeditor && \
+    cd / && \
+    rm -r /tmp/moin.tar.gz /tmp/moin && \
     apt-get clean && rm -rf /var/lib/apt/lists/*  && /usr/local/bin/docker-wipelogs && \
     mv /usr/sbin/policy-rc.d /usr/sbin/policy-rc.d.disabled
 
